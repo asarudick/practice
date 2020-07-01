@@ -11,7 +11,7 @@ async function delay (duration: number) {
 }
 
 async function mockFetch (url: any) {
-  if (url.delay === timeout) throw new Error('Timed out.');
+  if (url.delay === timeout) return Promise.reject('Timed out.');
   await delay(url.delay);
   return url;
 }
@@ -19,89 +19,41 @@ async function mockFetch (url: any) {
 describe('getHighestPriorityUrl', () => {
   it(`should throw if empty`, async () => {
     const urls: any[] = [];
-    let result;
-    try {
-      result = await getHighestPriorityUrl(urls, mockFetch);
-    }
-    catch (e) {
-
-    }
-
-    expect(result).toBe(urls[0]);
+    return await expect(getHighestPriorityUrl(urls, mockFetch)).rejects.toThrow('No urls specified.');
   });
   it(`should return first and only when successful`, async () => {
     const urls = [
       { url: 'a', delay: 0 }
     ];
-    let result;
-    try {
-      result = await getHighestPriorityUrl(urls, mockFetch);
-    }
-    catch (e) {
-
-    }
-
-    expect(result).toBe(urls[0]);
+    return await expect(getHighestPriorityUrl(urls, mockFetch)).resolves.toBe(urls[0]);
   });
   it(`should return second when first fails and second succeeds`, async () => {
     const urls = [
       { url: 'a', delay: timeout },
       { url: 'b', delay: 0 },
     ];
-    let result;
-    try {
-      result = await getHighestPriorityUrl(urls, mockFetch);
-    }
-    catch (e) {
-
-    }
-
-    expect(result).toBe(urls[1]);
+    return await expect(getHighestPriorityUrl(urls, mockFetch)).resolves.toBe(urls[1]);
   });
   it(`should return first when both succeed`, async () => {
     const urls = [
       { url: 'a', delay: 0 },
       { url: 'b', delay: 0 },
     ];
-    let result;
-    try {
-      result = await getHighestPriorityUrl(urls, mockFetch);
-    }
-    catch (e) {
-
-    }
-
-    expect(result).toBe(urls[0]);
+    return await expect(getHighestPriorityUrl(urls, mockFetch)).resolves.toBe(urls[0]);
   });
   it(`should return first when first succeeds and second fails`, async () => {
     const urls = [
       { url: 'a', delay: 0 },
       { url: 'b', delay: timeout },
     ];
-    let result;
-    try {
-      result = await getHighestPriorityUrl(urls, mockFetch);
-    }
-    catch (e) {
-
-    }
-
-    expect(result).toBe(urls[0]);
+    return await expect(getHighestPriorityUrl(urls, mockFetch)).resolves.toBe(urls[0]);
   });
   it(`should throw error when all requests fail`, async () => {
     const urls = [
       { url: 'a', delay: timeout },
       { url: 'b', delay: timeout },
     ];
-    let result, error;
-    try {
-      result = await getHighestPriorityUrl(urls, mockFetch);
-    }
-    catch (e) {
-      error = e;
-      result = e;
-    }
-    expect(result).toBe(error);
+    return await expect(getHighestPriorityUrl(urls, mockFetch)).rejects.toThrow();
   });
   it(`should return last when all others fail`, async () => {
     const urls = [
@@ -114,13 +66,6 @@ describe('getHighestPriorityUrl', () => {
       { url: 'g', delay: timeout },
       { url: 'h', delay: 0 },
     ];
-    let result;
-    try {
-      result = await getHighestPriorityUrl(urls, mockFetch);
-    }
-    catch (e) {
-    }
-
-    expect(result).toBe(urls[7]);
+    return await expect(getHighestPriorityUrl(urls, mockFetch)).resolves.toBe(urls[7]);
   });
 });
