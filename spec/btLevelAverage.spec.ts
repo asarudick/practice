@@ -1,5 +1,5 @@
 import { it, expect, describe } from '@jest/globals';
-import bstLevelAverage from '../src/bstLevelAverage';
+import bstLevelAverage from '../src/btLevelAverage';
 import { Node } from '../src/Node';
 
 describe('bstLevelAverage', () => {
