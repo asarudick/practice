@@ -1,0 +1,21 @@
+{
+  "name": "practice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
+    "@babel/preset-typescript": "^7.9.0",
+    "babel-jest": "^26.0.1",
+    "jest": "^26.0.1",
+    "typescript": "^3.9.3"
+  },
+  "scripts": {
+    "test": "jest --coverage",
+    "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand"
+  },
+  "author": "",
+  "license": "ISC"
+}
