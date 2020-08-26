@@ -13,7 +13,8 @@
     "typescript": "^3.9.3"
   },
   "scripts": {
-    "test": "jest --coverage",
+    "test": "jest --coverage --silent=false",
+    "test:watch": "jest --coverage --silent=false --watch",
     "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand"
   },
   "author": "",
