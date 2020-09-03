@@ -22,19 +22,19 @@ describe('flatten', () => {
     const result = flatten([[[0]]]);
     expect(result).toEqual(expected);
   });
-  it('should return [0, 0] for [[0], 0]', () => {
-    const expected: any = [0, 0];
-    const result = flatten([[0], 0]);
+  it('should return [0, 1] for [[0], 1]', () => {
+    const expected: any = [0, 1];
+    const result = flatten([[0], 1]);
     expect(result).toEqual(expected);
   });
-  it('should return [0, 0] for [[0], [0]]', () => {
-    const expected: any = [0, 0];
-    const result = flatten([[0], [0]]);
+  it('should return [0, 1] for [[0], [1]]', () => {
+    const expected: any = [0, 1];
+    const result = flatten([[0], [1]]);
     expect(result).toEqual(expected);
   });
-  it('should return [0, 0] for [[[0]], [0]]', () => {
-    const expected: any = [0, 0];
-    const result = flatten([[[0]], [0]]);
+  it('should return [0, 1] for [[[0]], [1]]', () => {
+    const expected: any = [0, 1];
+    const result = flatten([[[0]], [1]]);
     expect(result).toEqual(expected);
   });
 });
@@ -59,19 +59,19 @@ describe('flattenStack', () => {
     const result = flattenStack([[[0]]]);
     expect(result).toEqual(expected);
   });
-  it('should return [0, 0] for [[0], 0]', () => {
-    const expected: any = [0, 0];
-    const result = flattenStack([[0], 0]);
+  it('should return [0, 1] for [[0], 1]', () => {
+    const expected: any = [0, 1];
+    const result = flattenStack([[0], 1]);
     expect(result).toEqual(expected);
   });
-  it('should return [0, 0] for [[0], [0]]', () => {
-    const expected: any = [0, 0];
-    const result = flattenStack([[0], [0]]);
+  it('should return [0, 1] for [[0], [1]]', () => {
+    const expected: any = [0, 1];
+    const result = flattenStack([[0], [1]]);
     expect(result).toEqual(expected);
   });
-  it('should return [0, 0] for [[[0]], [0]]', () => {
-    const expected: any = [0, 0];
-    const result = flattenStack([[[0]], [0]]);
+  it('should return [0, 1] for [[[0]], [1]]', () => {
+    const expected: any = [0, 1];
+    const result = flattenStack([[[0]], [1]]);
     expect(result).toEqual(expected);
   });
 });

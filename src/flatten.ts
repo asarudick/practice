@@ -19,5 +19,5 @@ export function flattenStack(arr: any[]): any {
     }
   }
 
-  return result;
+  return result.reverse();
 }
