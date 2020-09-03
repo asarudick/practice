@@ -1,4 +1,4 @@
-import flatten from '../src/flatten';
+import { flatten, flattenStack } from '../src/flatten';
 import { it, expect, describe } from '@jest/globals';
 
 describe('flatten', () => {
@@ -35,6 +35,43 @@ describe('flatten', () => {
   it('should return [0, 0] for [[[0]], [0]]', () => {
     const expected: any = [0, 0];
     const result = flatten([[[0]], [0]]);
+    expect(result).toEqual(expected);
+  });
+});
+describe('flattenStack', () => {
+  it('should return [] for []', () => {
+    const expected: any = [];
+    const result = flattenStack([]);
+    expect(result).toEqual(expected);
+  });
+  it('should return [0] for [0]', () => {
+    const expected: any = [0];
+    const result = flattenStack([0]);
+    expect(result).toEqual(expected);
+  });
+  it('should return [0] for [[0]]', () => {
+    const expected: any = [0];
+    const result = flattenStack([[0]]);
+    expect(result).toEqual(expected);
+  });
+  it('should return [0] for [[[0]]]', () => {
+    const expected: any = [0];
+    const result = flattenStack([[[0]]]);
+    expect(result).toEqual(expected);
+  });
+  it('should return [0, 0] for [[0], 0]', () => {
+    const expected: any = [0, 0];
+    const result = flattenStack([[0], 0]);
+    expect(result).toEqual(expected);
+  });
+  it('should return [0, 0] for [[0], [0]]', () => {
+    const expected: any = [0, 0];
+    const result = flattenStack([[0], [0]]);
+    expect(result).toEqual(expected);
+  });
+  it('should return [0, 0] for [[[0]], [0]]', () => {
+    const expected: any = [0, 0];
+    const result = flattenStack([[[0]], [0]]);
     expect(result).toEqual(expected);
   });
 });
