@@ -15,8 +15,6 @@ export default class {
   }
 
   emit(event: string, ...params: any) {
-    for (const cb of this.registry[event]) {
-      cb(...params);
-    }
+    this.registry[event].forEach((cb) => cb(...params));
   }
 }
