@@ -35,11 +35,16 @@ describe('alienDictionary', () => {
     expect(result).toEqual(expected);
   });
   it('should return true for ["hello", "leetcode"], "hlabcdefgijkmnopqrstuvwxyz"', () => {
-    const expected: boolean = false;
+    const expected: boolean = true;
     const result = alienDictionary(
-      ['word', 'world', 'row'],
+      ['hello', 'leetcode'],
       'hlabcdefgijkmnopqrstuvwxyz'
     );
+    expect(result).toEqual(expected);
+  });
+  it('should return true for ["kuvp", "q"], "ngxlkthsjuoqcpavbfdermiywz"', () => {
+    const expected: boolean = true;
+    const result = alienDictionary(['kuvp', 'q'], 'ngxlkthsjuoqcpavbfdermiywz');
     expect(result).toEqual(expected);
   });
 });
